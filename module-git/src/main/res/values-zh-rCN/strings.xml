@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="git_default_text">默认文字</string>
+    <string name="git_title_clone_repo">克隆仓库</string>
+
+    <!-- action -->
+    <string name="git_action_search">查找</string>
+    <string name="git_action_clone">克隆</string>
+    <string name="git_action_import_repo">导入仓库</string>
+    <string name="git_action_settings">设置</string>
+    <string name="git_action_mode_rename_key">重命名密钥</string>
+    <string name="git_action_mode_rename_branch">重命名分支</string>
+    <string name="git_action_manage_private_key">私钥</string>
+    <string name="git_action_generate_private_key">生成密钥</string>
+    <string name="git_action_import_private_key">导入密钥</string>
+    <string name="git_action_mode_show_private_key">显示私钥</string>
+    <string name="git_action_mode_show_public_key">显示公钥</string>
+    <string name="git_action_mode_edit_key_password">编辑密钥密码</string>
+    <string name="git_action_feedback">反馈</string>
+    <string name="git_action_choose_language">选择语言</string>
+    <string name="git_action_mode_diff">比较</string>
+    <string name="git_action_edit">编辑</string>
+    <string name="git_action_edit_save">保存</string>
+    <string name="git_action_copy_all">复制所有文件</string>
+    <string name="git_action_edit_in_other_app">在其他应用中编辑</string>
+    <string name="git_action_reset">重置</string>
+    <string name="git_action_toggle_drawer">开关抽屉</string>
+    <string name="git_action_copy_commit_str">复制提交 Hash 值</string>
+    <string name="git_action_create_external_repo">创建仓库</string>
+    <string name="git_action_share_diff">分享 diff</string>
+    <string name="git_action_save_diff">保存 diff</string>
+    <string name="git_action_send_report">发送报告</string>
+
+    <!-- label msg -->
+    <string name="git_label_ok">确定</string>
+    <string name="git_label_remote_url">远程地址</string>
+    <string name="git_label_cancel">取消</string>
+    <string name="git_label_clone">克隆</string>
+    <string name="git_label_init">Init</string>
+    <string name="git_label_delete">删除</string>
+    <string name="git_label_generate_key">生成密钥</string>
+    <string name="git_label_dialog_generate_key">生成密钥</string>
+    <string name="git_label_username">用户名</string>
+    <string name="git_label_password">密码</string>
+    <string name="git_label_new_file_name">新建文件名</string>
+    <string name="git_label_key_size">密钥长度</string>
+    <string name="git_label_rename">重命名</string>
+    <string name="git_label_send_feedback">发送反馈</string>
+    <string name="git_label_import">导入</string>
+    <string name="git_label_push">推送</string>
+    <string name="git_label_push_all">全部推送</string>
+    <string name="git_label_pull">拉取(pull)</string>
+    <string name="git_label_commit">提交(commit)</string>
+    <string name="git_label_add_all_to_stage">暂存所有(Add ./*)</string>
+    <string name="git_label_create">创建</string>
+    <string name="git_label_checkout">检出</string>
+    <string name="git_label_git_name">名称</string>
+    <string name="git_label_git_email">邮箱</string>
+    <string name="git_label_git_name_per_repo">覆盖提交者名称</string>
+    <string name="git_label_git_email_per_repo">覆盖提交者邮箱</string>
+    <string name="git_label_done">完成</string>
+    <string name="git_label_save">保存</string>
+    <string name="git_label_choose_app_to_open">打开 …</string>
+    <string name="git_label_choose_app_to_edit">使用…编辑</string>
+    <string name="git_label_new_branch_name">新分支</string>
+    <string name="git_label_anonymous_checkout">匿名检出</string>
+    <string name="git_label_reset">重置(reset)</string>
+    <string name="git_label_merge">合并</string>
+    <string name="git_label_fetch">拉取(Fetch)</string>
+    <string name="git_label_rebase">衍合</string>
+    <string name="git_label_cherryPick">择取</string>
+    <string name="git_label_diff">比较</string>
+    <string name="git_label_newFile">新建文件</string>
+    <string name="git_label_newDir">新建文件夹</string>
+    <string name="git_label_addRemote">添加远程</string>
+    <string name="git_label_removeRemote">删除远程</string>
+    <string name="git_label_rawConfig">Raw 配置</string>
+    <string name="git_label_config">配置</string>
+
+    <!-- for title -->
+    <string name="git_title_activity_repo_detail">仓库</string>
+    <string name="git_title_activity_import_repository">导入仓库</string>
+    <string name="git_title_activity_view_file">文件：</string>
+    <string name="git_title_activity_commit_diff">比较差异：</string>
+    <string name="git_title_section1">第1部分</string>
+    <string name="git_title_section2">第2部分</string>
+    <string name="git_title_section3">第3部分</string>
+    <string name="git_tab_files_label">文件</string>
+    <string name="git_tab_file_label">文件</string>
+    <string name="git_tab_commits_label">提交</string>
+    <string name="git_tab_status_label">状态</string>
+
+    <!-- Dialog Msg -->
+    <string name="git_dialog_choose_branch_title">选择分支</string>
+    <string name="git_dialog_choose_option">选择选项…</string>
+    <string name="git_dialog_rename_repo_title">重命名仓库</string>
+    <string name="git_dialog_rename_repo_hint">仓库名称</string>
+    <string name="git_dialog_delete_repo_title">确认删除</string>
+    <string name="git_dialog_delete_repo_msg">您确定要删除此仓库吗？</string>
+    <string name="git_dialog_rename_key_title">重命名</string>
+    <string name="git_dialog_edit_key_password_title">密钥密码</string>
+    <string name="git_dialog_rename_branch_title">重命名</string>
+    <string name="git_dialog_choose_language_title">选择语言</string>
+    <string name="git_dialog_comfirm_import_repo_title">导入仓库</string>
+    <string name="git_dialog_comfirm_import_repo_msg">您确定要导入此仓库吗？</string>
+    <string name="git_dialog_merge_title">选择分支来合并</string>
+    <string name="git_dialog_merge_checkbox">提交后合并</string>
+    <string name="git_dialog_file_delete">删除文件</string>
+    <string name="git_dialog_file_delete_msg">你确定要删除文件或目录？</string>
+    <string name="git_dialog_file_remove_cached">删除缓存的文件</string>
+    <string name="git_dialog_file_remove_cached_msg">你确定要删除这个索引文件或目录？</string>
+    <string name="git_dialog_file_remove_force">删除 Force 文件</string>
+    <string name="git_dialog_file_remove_force_msg">您确定要删除工作目录和索引文件或目录吗？</string>
+    <string name="git_dialog_key_delete">删除密钥</string>
+    <string name="git_dialog_key_delete_msg">您确定要删除此密钥吗？</string>
+    <string name="git_dialog_branch_delete">删除分支</string>
+    <string name="git_dialog_branch_delete_msg">您确定要删除此分支吗？</string>
+    <string name="git_dialog_reset_commit_title">重置更改</string>
+    <string name="git_dialog_reset_commit_msg">您确定要放弃所有修改吗？</string>
+    <string name="git_dialog_create_dir_title">新建目录</string>
+    <string name="git_dialog_create_dir_hint">目录名称</string>
+    <string name="git_dialog_create_file_title">新建文件</string>
+    <string name="git_dialog_create_file_hint">文件名</string>
+    <string name="git_dialog_comfirm_checkout_commit_title">确认检出</string>
+    <string name="git_dialog_comfirm_checkout_commit_msg">选择分支</string>
+    <string name="git_dialog_profile_preferences_title">选项</string>
+    <string name="git_dialog_prompt_for_password_title">需要认证</string>
+    <string name="git_dialog_prompt_for_password_title_auth_fail">认证失败</string>
+    <string name="git_dialog_prompt_for_password_checkbox">保存用户名和密码</string>
+    <string name="git_dialog_title_you_want_to">你正准备…</string>
+    <string name="git_dialog_create_branch_title">创建新的分支</string>
+    <string name="git_dialog_create_branch_hint">分支名称</string>
+    <string name="git_dialog_clone_recursive">递归克隆</string>
+    <string name="git_dialog_show_unstaged_diff">未暂存 diff</string>
+    <string name="git_dialog_show_staged_diff">已暂存 diff</string>
+    <string name="git_dialog_show_invalid_remote">无效远程报告</string>
+    <string name="git_dialog_not_supported">尚不支持</string>
+    <string name="git_dialog_not_supported_msg">您的设备尚不支持此特性，请参考帮助以获取更多信息。</string>
+    <string name="git_dialog_error_title">发生了错误</string>
+    <string name="git_dialog_error_send_report">发送错误报告</string>
+    <string name="git_dialog_error_occurred_msg">发生了一个没有预料到的错误</string>
+    <string name="git_dialog_keymap_title">快捷键</string>
+    <string name="git_dialog_keymap_mesg">C - 提交\n
+ F - 文件\n
+ S - 状态\n
+ ? - 帮助</string>
+    <string name="git_dialog_open_remote">打开远程地址</string>
+    <string name="git_dialog_open_remote_title">选择用于打开 %s 的应用</string>
+    <string name="git_dialog_open_remote_no_app_available">没有可用于打开此地址的应用</string>
+    <string name="git_dialog_permission_not_granted">TimeCatGit 需要读写权限 以便将本地 repo 写入到您的内部存储中。若不给予 TimeCatGit 此权限，它将无法正常运行。</string>
+
+    <!-- Others -->
+    <string name="git_pull_msg_init">正在拉取 …</string>
+    <string name="git_progress_left_init">0%</string>
+    <string name="git_progress_right_init">0/0</string>
+    <string name="git_push_msg_init">正在推送 …</string>
+    <string name="git_fetch_msg_init">正在抓取…</string>
+    <string name="git_title_activity_private_key_manage">管理私钥</string>
+    <string name="git_hello_world">Hello, World!</string>
+    <string name="git_title_activity_explore_file">浏览文件</string>
+    <string name="git_title_activity_settings">设置</string>
+    <string name="git_title_config_repo">仓库配置</string>
+
+    <!-- toast msg -->
+    <string name="git_feedback_subject">反馈</string>
+    <string name="git_cannot_delete_branch">无法删除 %s</string>
+    <string name="git_cannot_delete_current_branch">无法删除当前检出的分支 %s</string>
+
+    <!-- Preferences -->
+
+    <string name="git_preference_repo_location">repos 的根存储位置</string>
+    <string name="git_pref_category_title_general">通用</string>
+    <string name="git_action_select_root_dir">选择作为根文件夹</string>
+    <string name="git_action_create_new_dir">新建文件夹</string>
+    <string name="git_pref_category_title_git_profile">Git配置(必填)</string>
+    <string name="git_preference_git_user_name">用户名</string>
+    <string name="git_preference_git_user_email">用户邮箱</string>
+    <string name="git_pref_category_title_about">关于</string>
+    <string name="git_preference_send_feedback">反馈</string>
+    <string name="git_preference_send_feedback_summary">通过在GitHub上创建issue来提交反馈</string>
+    <string name="git_preference_app_version">版本</string>
+    <string name="git_preference_manage_ssh_keys_summary">管理 SSH Keys</string>
+    <string name="git_preference_manage_ssh_keys">SSH Keys</string>
+    <string name="git_preference_use_gravatar">使用重力图像</string>
+    <string name="git_preference_use_gravatar_summary">从gravatar.com加载头像图片</string>
+    <string name="git_pref_category_title_security">安全</string>
+    <string name="git_preference_use_theme">选择颜色主题</string>
+    <string name="git_action_git_profile">Git 配置</string>
+    <string name="git_action_open_in_other_app">在其他应用中打开</string>
+    <string name="git_action_add_private_key">添加私钥</string>
+
+    <!-- Intent filters -->
+    <string name="git_cloning">正在克隆…</string>
+    <string name="git_importing">正在导入…</string>
+    <string name="git_clone_with_mgit">Git 克隆到本地</string>
+    <string name="git_invalid_url">链接无效！</string>
+    <string name="git_initialising">正在初始化…</string>
+    <string name="git_repository_already_present">repo 已存在！</string>
+
+</resources>

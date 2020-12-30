@@ -1,0 +1,43 @@
+apply from: "${project.rootDir}/gradle/library_header.gradle"
+
+android {
+    resourcePrefix "git_" //给 Module 内的资源名增加前缀, 避免资源名冲突
+    buildFeatures{
+        dataBinding = true
+        // viewBinding = true
+    }
+}
+
+configurations {
+    all {
+        exclude module: 'httpclient'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api rootProject.ext.timecat["component-CommonStatic"]
+    api rootProject.ext.timecat["middle-setting"]
+    api rootProject.ext.dependencies["timber"]
+    api rootProject.ext.dependencies["kotlin-stdlib"]
+    api rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
+    api rootProject.ext.androidx_lib["annotations"]
+    api rootProject.ext.androidx_lib["fragment"]
+    api rootProject.ext.androidx_lib["support-vector-drawable"]
+    api rootProject.ext.androidx_lib["design"]
+    api rootProject.ext.androidx_lib["recyclerview"]
+    api rootProject.ext.androidx_lib["preference"]
+    api rootProject.ext.androidx_lib["constraint-layout"]
+    api rootProject.ext.androidx_lib["appcompat"]
+    api rootProject.ext.androidx_lib["databinding-runtime"]
+    kaptAndroidTest rootProject.ext.androidx_lib["databinding-compiler"]
+    implementation rootProject.ext.androidx_lib["lifecycle-extensions"]
+    implementation rootProject.ext.androidx_lib["lifecycle-common-java8"]
+    implementation rootProject.ext.dependencies["jgit"]
+
+    implementation 'com.jcraft:jsch:0.1.55'
+    implementation 'com.scottyab:secure-preferences-lib:0.1.4'
+    implementation 'org.conscrypt:conscrypt-android:1.1.0'
+}
+
+apply from: "${project.rootDir}/gradle/library_tail.gradle"

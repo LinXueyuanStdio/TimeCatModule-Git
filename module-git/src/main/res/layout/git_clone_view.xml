@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.timecat.module.git.repolist.ClickActions" />
+
+        <variable
+            name="viewModel"
+            type="com.timecat.module.git.clone.CloneViewModel" />
+
+        <variable
+            name="clickHandler"
+            type="com.timecat.module.git.common.OnActionClickListener" />
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
+
+        <com.timecat.page.base.view.BlurringToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="?android:toolbarStyle"
+            app:contentInsetStart="0dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="@dimen/git_general_padding"
+            android:visibility="@{viewModel.visible ? View.VISIBLE : View.GONE}"
+            tools:visibility="visible">
+
+
+            <LinearLayout
+                android:id="@+id/cloneViewForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/git_title_clone_repo" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:errorText="@{viewModel.remoteUrlError}"
+                    android:visibility="@{viewModel.initLocal ? View.GONE : View.VISIBLE}"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@android:style/TextAppearance">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/git_general_vertical_margin"
+                        android:hint="@string/git_label_remote_url"
+                        android:imeOptions="actionNext"
+                        android:inputType="textUri"
+                        android:singleLine="true"
+                        android:text="@={viewModel.remoteUrl}"
+                        android:textSize="@dimen/git_general_dialog_text_size" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:errorText="@{viewModel.localRepoNameError}"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@android:style/TextAppearance">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/localPath"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/git_general_vertical_margin"
+                        android:hint="@string/git_dialog_clone_local_path_hint"
+                        android:imeOptions="actionNext"
+                        android:inputType="textNoSuggestions"
+                        android:singleLine="true"
+                        android:text="@={viewModel.localRepoName}"
+                        android:textSize="@dimen/git_general_dialog_text_size" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="@={viewModel.initLocal}"
+                    android:text="@string/git_dialog_clone_neutral_label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cloneViewForm" />
+
+                <CheckBox
+                    android:id="@+id/cloneRecursive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:checked="@={viewModel.cloneRecursively}"
+                    android:text="@string/git_dialog_clone_recursive"
+                    android:visibility="@{viewModel.initLocal ? View.GONE : View.VISIBLE}" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/cloneViewCloneButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> clickHandler.onActionClick(ClickActions.CLONE.name)}"
+                android:text="@{viewModel.initLocal ? @string/git_label_init : @string/git_label_clone}"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cloneViewForm"
+                tools:text="@string/git_label_clone" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:onClick="@{() -> clickHandler.onActionClick(ClickActions.CANCEL.name)}"
+                android:text="@string/git_label_cancel"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toStartOf="@id/cloneViewCloneButton"
+                app:layout_constraintTop_toBottomOf="@id/cloneViewForm" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>

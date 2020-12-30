@@ -1,0 +1,12 @@
+<resources>
+    <!-- Application theme. -->
+    <style name="git_TimeCatGitAppTheme" parent="ThemeLight">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="git_TimeCatGitDarkAppTheme" parent="ThemeDark">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+</resources>

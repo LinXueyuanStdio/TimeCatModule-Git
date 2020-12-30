@@ -1,0 +1,31 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/git_action_search"
+        android:visible="false"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+
+    <item
+        android:id="@+id/action_edit_in_other_app"
+        android:icon="@drawable/ic_file_24dp"
+        android:title="@string/git_action_edit_in_other_app"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_edit"
+        android:icon="@drawable/ic_edit"
+        android:title="@string/git_action_edit"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_copy_all"
+        android:icon="@drawable/ic_copy"
+        android:title="@string/git_action_copy_all"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_choose_language"
+        android:title="@string/git_action_choose_language"
+        app:showAsAction="never" />
+
+</menu>

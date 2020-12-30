@@ -1,5 +1,5 @@
 include ':app'
-include ':git'
+include ':module-git'
 
 rootProject.name = "TimeCatModule-Git"
 

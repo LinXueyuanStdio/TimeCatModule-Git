@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/commitIcon"
+        android:layout_width="@dimen/git_file_list_item_icon_size"
+        android:layout_height="@dimen/git_file_list_item_icon_size"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:padding="@dimen/git_file_list_item_icon_padding"
+        android:src="@drawable/ic_branch_w" />
+
+    <TextView
+        android:id="@+id/commitTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/commitIcon"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/commitIcon"
+        android:layout_marginLeft="@dimen/git_general_horizontal_margin"
+        android:layout_toRightOf="@+id/commitIcon"
+        android:gravity="left|center"
+        android:minHeight="@dimen/git_general_min_height"
+        android:padding="@dimen/git_general_padding"
+        android:text="@string/git_default_text"
+        android:textSize="@dimen/git_file_list_item_text_size" />
+
+
+</RelativeLayout>

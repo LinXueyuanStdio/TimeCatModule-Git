@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_share_diff"
+        android:title="@string/git_action_share_diff"
+        app:actionProviderClass="androidx.appcompat.widget.ShareActionProvider"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_save_diff"
+        android:icon="@drawable/ic_save_white_24dp"
+        android:title="@string/git_action_save_diff"
+        app:showAsAction="ifRoom" />
+</menu>

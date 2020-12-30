@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.timecat.module.git.sgit.database.models.GitConfig" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/git_general_padding"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/git_general_vertical_margin"
+            android:hint="@string/git_label_git_name_per_repo"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName"
+            android:singleLine="true"
+            android:text="@={viewModel.userName}"
+            android:textSize="@dimen/git_general_dialog_text_size" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/git_general_vertical_margin"
+            android:hint="@string/git_label_git_email_per_repo"
+            android:imeOptions="actionDone"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"
+            android:text="@={viewModel.userEmail}"
+            android:textSize="@dimen/git_general_dialog_text_size" />
+
+    </LinearLayout>
+</layout>

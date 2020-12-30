@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/git_action_search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+    <item
+        android:id="@+id/action_new"
+        android:icon="@drawable/ic_add"
+        android:title="@string/git_action_clone"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_import_repo"
+        android:title="@string/git_action_import_repo"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/git_action_settings"
+        app:showAsAction="ifRoom" />
+</menu>

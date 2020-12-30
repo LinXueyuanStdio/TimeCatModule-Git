@@ -1,0 +1,84 @@
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/git_action_search"
+        android:visible="false"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
+        android:id="@+id/newBranchName"
+        android:title="@string/git_label_new_branch_name"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/pull"
+        android:title="@string/git_label_pull"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/push"
+        android:title="@string/git_label_push"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/addAllToStage"
+        android:title="@string/git_label_add_all_to_stage"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/commit"
+        android:title="@string/git_label_commit"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/reset"
+        android:title="@string/git_label_reset"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/merge"
+        android:title="@string/git_label_merge"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/fetch"
+        android:title="@string/git_label_fetch"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/rebase"
+        android:title="@string/git_label_rebase"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/cherryPick"
+        android:title="@string/git_label_cherryPick"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/diff"
+        android:title="@string/git_label_diff"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/newFile"
+        android:title="@string/git_label_newFile"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/newDir"
+        android:title="@string/git_label_newDir"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/addRemote"
+        android:title="@string/git_label_addRemote"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/removeRemote"
+        android:title="@string/git_label_removeRemote"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/delete"
+        android:title="@string/git_label_delete"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/rawConfig"
+        android:title="@string/git_label_rawConfig"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/config"
+        android:title="@string/git_label_config"
+        app:showAsAction="ifRoom" />
+</menu>

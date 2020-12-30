@@ -1,0 +1,40 @@
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.timecat.module.git.repolist.RepoListViewModel" />
+
+        <variable
+            name="cloneViewModel"
+            type="com.timecat.module.git.clone.CloneViewModel" />
+
+        <variable
+            name="clickHandler"
+            type="com.timecat.module.git.common.OnActionClickListener" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.timecat.module.git.repolist.RepoListActivity">
+
+        <include
+            android:id="@+id/cloneViewInclude"
+            layout="@layout/git_clone_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            bind:clickHandler="@{clickHandler}"
+            bind:viewModel="@{cloneViewModel}" />
+
+        <ListView
+            android:id="@+id/repoList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</layout>
