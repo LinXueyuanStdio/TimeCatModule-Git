@@ -1,1 +1,126 @@
-<manifest package="com.timecat.module.git" />
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.timecat.module.git">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application>
+        <meta-data
+            android:name="com.timecat.module.git.app.GlobalConfiguration"
+            android:value="ConfigModule" />
+
+        <activity
+            android:name="com.timecat.module.git.repolist.RepoListActivity"
+            android:label="TimeCatGit"
+            android:theme="@style/git_TimeCatGitAppTheme">
+            <intent-filter android:label="@string/git_clone_with_mgit">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="*" />
+                <data android:pathPattern="@string/git_ending_with_git" />
+            </intent-filter>
+            <intent-filter android:label="@string/git_clone_with_mgit">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/git_https" />
+                <data android:scheme="@string/git_http" />
+                <data android:scheme="@string/git_git" />
+                <data android:scheme="@string/git_ssh" />
+                <data android:host="github.com" />
+                <data android:host="gitlab.com" />
+                <data android:host="bitbucket.com" />
+                <data android:host="notabug.org" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.timecat.module.git.sgit.activities.RepoDetailActivity"
+            android:label="@string/git_title_activity_repo_detail"
+            android:parentActivityName="com.timecat.module.git.repolist.RepoListActivity"
+            android:theme="@style/git_TimeCatGitAppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.timecat.module.git.repolist.RepoListActivity" />
+        </activity>
+        <activity
+            android:name="com.timecat.module.git.sgit.activities.ViewFileActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:parentActivityName=".sgit.activities.RepoDetailActivity"
+            android:theme="@style/git_TimeCatGitAppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.timecat.module.git.sgit.activities.RepoDetailActivity" />
+        </activity>
+        <activity
+            android:name="com.timecat.module.git.sgit.activities.BranchChooserActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:parentActivityName=".sgit.activities.RepoDetailActivity"
+            android:theme="@style/git_TimeCatGitAppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.timecat.module.git.sgit.activities.RepoDetailActivity" />
+        </activity>
+        <activity
+            android:name="com.timecat.module.git.sgit.activities.CommitDiffActivity"
+            android:parentActivityName=".sgit.activities.RepoDetailActivity"
+            android:theme="@style/git_TimeCatGitAppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.timecat.module.git.sgit.activities.RepoDetailActivity" />
+        </activity>
+        <activity
+            android:name="com.timecat.module.git.sgit.activities.explorer.ImportRepositoryActivity"
+            android:label="@string/git_title_activity_import_repository"
+            android:parentActivityName="com.timecat.module.git.repolist.RepoListActivity"
+            android:theme="@style/git_TimeCatGitAppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.timecat.module.git.repolist.RepoListActivity" />
+        </activity>
+        <activity
+            android:name="com.timecat.module.git.sgit.activities.explorer.PrivateKeyManageActivity"
+            android:exported="true"
+            android:label="@string/git_title_activity_private_key_manage"
+            android:parentActivityName="com.timecat.module.git.repolist.RepoListActivity"
+            android:theme="@style/git_TimeCatGitAppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.timecat.module.git.repolist.RepoListActivity" />
+        </activity>
+        <activity
+            android:name="com.timecat.module.git.sgit.activities.explorer.ExploreFileActivity"
+            android:label="@string/git_title_activity_explore_file"
+            android:parentActivityName=".sgit.activities.explorer.PrivateKeyManageActivity"
+            android:theme="@style/git_TimeCatGitAppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.timecat.module.git.sgit.activities.explorer.PrivateKeyManageActivity" />
+        </activity>
+        <activity
+            android:name="com.timecat.module.git.sgit.activities.UserSettingsActivity"
+            android:label="@string/git_title_activity_settings"
+            android:parentActivityName="com.timecat.module.git.repolist.RepoListActivity"
+            android:theme="@style/git_TimeCatGitAppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.timecat.module.git.repolist.RepoListActivity" />
+        </activity>
+        <activity
+            android:name="com.timecat.module.git.sgit.activities.explorer.ExploreRootDirActivity"
+            android:label="@string/git_title_activity_explore_file"
+            android:parentActivityName=".sgit.activities.UserSettingsActivity"
+            android:theme="@style/git_TimeCatGitAppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.timecat.module.git.sgit.activities.UserSettingsActivity" />
+        </activity>
+
+    </application>
+
+</manifest>
