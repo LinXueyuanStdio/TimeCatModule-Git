@@ -20,7 +20,7 @@ android {
                 arguments = [
                         "moduleName"     : project.getName(),
                         "HOST"           : project.getName().replace("-", ""),
-                        "RouterDocFolder": "${project.rootDir}/RooterDocument".toString(),
+                        "RouterDocFolder": "${project.rootDir}/RouterDocument".toString(),
                         "RouterDocEnable": String.valueOf("true")
                 ]
             }
