@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
 import com.timecat.component.setting.DEF
+import com.timecat.layout.ui.business.form.Divider
+import com.timecat.layout.ui.business.form.H1
+import com.timecat.layout.ui.business.form.Next
+import com.timecat.layout.ui.business.form.Switch
 import com.timecat.middle.setting.BaseSettingActivity
-import com.timecat.middle.setting.MaterialForm
 import com.timecat.module.git.R
-import com.timecat.module.git.android.utils.BasicFunctions
 import com.timecat.module.git.sgit.activities.explorer.ExploreRootDirActivity
 import com.timecat.module.git.sgit.activities.explorer.PrivateKeyManageActivity
 
@@ -20,7 +22,7 @@ class UserSettingsActivity : BaseSettingActivity() {
     override fun title(): String = "设置 git"
 
     override fun addSettingItems(container: ViewGroup) {
-        MaterialForm(this, container).apply {
+        container.apply {
             H1(getString(R.string.git_pref_category_title_general))
             Next(
                 getString(R.string.git_preference_repo_location),
@@ -69,9 +71,9 @@ class UserSettingsActivity : BaseSettingActivity() {
             }
             val sshKey = getString(R.string.git_pref_key_use_gravatar)
             Switch(getString(R.string.git_preference_use_gravatar),
-                getString(R.string.git_preference_use_gravatar_summary), {
-                    DEF.git().getBoolean(sshKey, true)
-                }) {
+                getString(R.string.git_preference_use_gravatar_summary), getInitialCheck = {
+                DEF.git().getBoolean(sshKey, true)
+            }) {
                 DEF.git().putBoolean(sshKey, it)
             }
 

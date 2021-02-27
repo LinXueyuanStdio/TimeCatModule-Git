@@ -1,6 +1,7 @@
 package com.timecat.module.git.app
 
 import android.content.Context
+import com.timecat.identity.readonly.RouterHub
 import com.timecat.middle.block.service.ContainerService
 import com.timecat.middle.block.service.HomeService
 import com.timecat.module.git.sgit.database.RepoDbManager
@@ -18,7 +19,7 @@ import kotlinx.coroutines.withContext
  * @description null
  * @usage null
  */
-@ServiceAnno(ContainerService::class)
+@ServiceAnno(ContainerService::class, name = [RouterHub.GLOBAL_GitContainerService])
 class GitContainerService : ContainerService {
     override fun loadForVirtualPath(context: Context, parentUuid: String, homeService: HomeService, callback: ContainerService.LoadCallback) {
         GlobalScope.launch(Dispatchers.IO) {
