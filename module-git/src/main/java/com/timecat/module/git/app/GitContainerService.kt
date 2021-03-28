@@ -21,6 +21,10 @@ import kotlinx.coroutines.withContext
  */
 @ServiceAnno(ContainerService::class, name = [RouterHub.GLOBAL_GitContainerService])
 class GitContainerService : ContainerService {
+    override fun loadContainerButton(context: Context, parentUuid: String, homeService: HomeService, callback: ContainerService.LoadButton) {
+        callback.onLoadSuccess(listOf())
+    }
+
     override fun loadForVirtualPath(context: Context, parentUuid: String, homeService: HomeService, callback: ContainerService.LoadCallback) {
         GlobalScope.launch(Dispatchers.IO) {
             val cursor = RepoDbManager.queryAllRepo()
@@ -32,5 +36,9 @@ class GitContainerService : ContainerService {
                 callback.onVirtualLoadSuccess(cards)
             }
         }
+    }
+
+    override fun loadMoreForVirtualPath(context: Context, parentUuid: String, offset: Int, homeService: HomeService, callback: ContainerService.LoadMoreCallback) {
+        callback.onVirtualLoadSuccess(listOf())
     }
 }

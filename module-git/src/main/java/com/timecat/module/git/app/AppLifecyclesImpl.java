@@ -17,15 +17,11 @@ package com.timecat.module.git.app;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
-
-import androidx.annotation.NonNull;
 
 import com.jess.arms.base.delegate.AppLifecycles;
-import com.timecat.module.git.BuildConfig;
-import com.timecat.module.git.R;
-import com.timecat.module.git.sgit.preference.PreferenceHelper;
 import com.timecat.module.git.transport.MGitHttpConnectionFactory;
+
+import androidx.annotation.NonNull;
 
 /**
  * ================================================ 展示 {@link AppLifecycles} 的用法
@@ -48,7 +44,6 @@ public class AppLifecyclesImpl implements AppLifecycles {
 
     @Override
     public void onCreate(@NonNull Application application) {
-        setAppVersionPref(application);
     }
 
     @Override
@@ -56,12 +51,4 @@ public class AppLifecyclesImpl implements AppLifecycles {
 
     }
 
-    private void setAppVersionPref(@NonNull Application application) {
-        SharedPreferences sharedPreference = PreferenceHelper.getInstance().getSharedPrefs();
-        String version = BuildConfig.VERSION_NAME;
-        sharedPreference
-                .edit()
-                .putString(application.getString(R.string.git_preference_key_app_version), version)
-                .apply();
-    }
 }
