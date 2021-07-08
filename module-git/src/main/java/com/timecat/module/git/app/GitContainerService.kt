@@ -1,9 +1,13 @@
 package com.timecat.module.git.app
 
 import android.content.Context
+import com.google.android.material.chip.Chip
+import com.timecat.component.router.app.NAV
+import com.timecat.data.room.record.RoomRecord
 import com.timecat.identity.readonly.RouterHub
-import com.timecat.middle.block.service.ContainerService
-import com.timecat.middle.block.service.HomeService
+import com.timecat.layout.ui.business.breadcrumb.Path
+import com.timecat.layout.ui.layout.setShakelessClickListener
+import com.timecat.middle.block.service.*
 import com.timecat.module.git.sgit.database.RepoDbManager
 import com.timecat.module.git.sgit.database.models.Repo
 import com.xiaojinzi.component.anno.ServiceAnno
@@ -21,8 +25,21 @@ import kotlinx.coroutines.withContext
  */
 @ServiceAnno(ContainerService::class, name = [RouterHub.GLOBAL_GitContainerService])
 class GitContainerService : ContainerService {
-    override fun loadContainerButton(context: Context, parentUuid: String, homeService: HomeService, callback: ContainerService.LoadButton) {
-        callback.onLoadSuccess(listOf())
+
+    override fun loadContext(path: Path, context: Context, parentUuid: String, record: RoomRecord?, homeService: HomeService) {
+        homeService.loadMenu(EmptyMenuContext())
+        homeService.loadHeader(listOf())
+        homeService.loadChipType(listOf())
+        homeService.loadPanel(EmptyPanelContext())
+        homeService.loadChipButtons(listOf(Chip(context).apply {
+            text = "进入Git管理页"
+            setShakelessClickListener {
+                NAV.go(RouterHub.GIT_RepoListActivity)
+            }
+        }))
+        homeService.loadCommand(EmptyCommandContext())
+        homeService.loadInputSend(EmptyInputContext())
+        homeService.reloadData()
     }
 
     override fun loadForVirtualPath(context: Context, parentUuid: String, homeService: HomeService, callback: ContainerService.LoadCallback) {
