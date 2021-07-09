@@ -43,6 +43,7 @@ class GitContainerService : ContainerService {
     }
 
     override fun loadForVirtualPath(context: Context, parentUuid: String, homeService: HomeService, callback: ContainerService.LoadCallback) {
+        homeService.adapter().setEndlessProgressItem(null)
         GlobalScope.launch(Dispatchers.IO) {
             val cursor = RepoDbManager.queryAllRepo()
             val repo = Repo.getRepoList(context, cursor)
