@@ -1,16 +1,16 @@
 package com.timecat.module.git.dialogs
 
+//import androidx.annotation.StringRes
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-//import androidx.annotation.StringRes
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.StringRes
 import com.timecat.module.git.R
 import com.timecat.module.git.android.views.SheimiDialogFragment
 import com.timecat.module.git.sgit.dialogs.DummyDialogListener
-import kotlinx.android.synthetic.main.git_dialog_exception.view.*
 
 class ExceptionDialog : SheimiDialogFragment() {
     private var mThrowable: Throwable? = null
@@ -20,6 +20,7 @@ class ExceptionDialog : SheimiDialogFragment() {
 
     @StringRes
     var errorTitleRes: Int = 0
+    private lateinit var errorMessage: TextView
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         super.onCreateDialog(savedInstanceState)
@@ -27,7 +28,8 @@ class ExceptionDialog : SheimiDialogFragment() {
         val builder = AlertDialog.Builder(rawActivity)
         val inflater = rawActivity.layoutInflater
         val layout = inflater.inflate(R.layout.git_dialog_exception, null)
-        layout.error_message.setText(mErrorRes)
+        errorMessage = layout.findViewById<TextView>(R.id.error_message)
+        errorMessage.setText(mErrorRes)
 
         builder.setView(layout)
 
