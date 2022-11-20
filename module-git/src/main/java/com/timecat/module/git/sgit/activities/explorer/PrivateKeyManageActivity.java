@@ -14,8 +14,8 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.timecat.module.git.R;
-import com.timecat.module.git.android.utils.BasicFunctions;
-import com.timecat.module.git.android.utils.FsUtils;
+import com.timecat.module.git.utils.BasicFunctions;
+import com.timecat.module.git.utils.FsUtils;
 import com.timecat.module.git.sgit.activities.ViewFileActivity;
 import com.timecat.module.git.sgit.dialogs.EditKeyPasswordDialog;
 import com.timecat.module.git.sgit.dialogs.RenameKeyDialog;

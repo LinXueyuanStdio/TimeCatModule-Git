@@ -13,7 +13,7 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.KeyPair;
 import com.timecat.element.alert.ToastUtil;
 import com.timecat.module.git.R;
-import com.timecat.module.git.android.views.SheimiDialogFragment;
+import com.timecat.module.git.sgit.dialogs.SheimiDialogFragment;
 import com.timecat.module.git.sgit.ssh.PrivateKeyUtils;
 
 import java.io.File;

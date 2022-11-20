@@ -1,12 +1,11 @@
 package com.timecat.module.git.sgit;
 
-import com.timecat.module.git.android.utils.SecurePrefsHelper;
+import com.timecat.component.commonsdk.utils.override.LogUtil;
+import com.timecat.module.git.utils.SecurePrefsHelper;
 
 import org.eclipse.jgit.errors.UnsupportedCredentialItem;
 import org.eclipse.jgit.transport.CredentialItem;
 import org.eclipse.jgit.transport.URIish;
-
-import timber.log.Timber;
 
 /**
  * ref: http://stackoverflow.com/a/15290861/85472
@@ -46,11 +45,11 @@ public class AndroidJschCredentialsProvider extends org.eclipse.jgit.transport.C
 
     @Override
     public boolean get(URIish uri, CredentialItem... items) throws UnsupportedCredentialItem {
-        Timber.w("get for uri %s", uri);
+        LogUtil.w("get for uri %s", uri);
         //FIXME: we will only handle the first *successfully* matched item
         for (final CredentialItem item : items) {
             if (item instanceof CredentialItem.StringType) {
-                Timber.w("need credential for: %s ", item.getPromptText());
+                LogUtil.w("need credential for: %s ", item.getPromptText());
                 // the getPromptText() will be "Passphrase for /.../files/ssh/key_file_name_rsa"
                 String prompt = item.getPromptText();
                 String keyfileName = prompt.substring(prompt.lastIndexOf("/") + 1, prompt.length());

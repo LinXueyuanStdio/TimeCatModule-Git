@@ -3,13 +3,13 @@ package com.timecat.module.git.clone
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.timecat.component.commonsdk.utils.override.LogUtil
 import com.timecat.extend.arms.BaseApplication
 import com.timecat.module.git.R
 import com.timecat.module.git.sgit.database.models.Repo
-import com.timecat.module.git.sgit.preference.PreferenceHelper
-import com.timecat.module.git.sgit.repo.tasks.repo.CloneTask
-import com.timecat.module.git.sgit.repo.tasks.repo.InitLocalTask
-import timber.log.Timber
+import com.timecat.module.git.utils.PreferenceHelper
+import com.timecat.module.git.tasks.CloneTask
+import com.timecat.module.git.tasks.InitLocalTask
 
 class CloneViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -42,10 +42,10 @@ class CloneViewModel(application: Application) : AndroidViewModel(application) {
         // FIXME: createRepo should not use user visible strings, instead will need to be refactored
         // to set an observable state
         if (initLocal.value as Boolean) {
-            Timber.d("INIT LOCAL %s", localRepoName.value)
+            LogUtil.d("INIT LOCAL ${localRepoName.value}")
             initLocalRepo()
         } else {
-            Timber.d("CLONE REPO %s %s [%b]", localRepoName.value, remoteUrl, cloneRecursively)
+            LogUtil.d("CLONE REPO ${localRepoName.value} ${remoteUrl} [${cloneRecursively}]")
             val repo = Repo.createRepo(localRepoName.value, remoteUrl, "")
             val task = CloneTask(repo, cloneRecursively, "", null)
             task.executeTask()

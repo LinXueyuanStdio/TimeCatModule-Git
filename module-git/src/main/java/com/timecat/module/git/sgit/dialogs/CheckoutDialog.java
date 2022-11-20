@@ -9,9 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.timecat.module.git.R;
-import com.timecat.module.git.android.views.SheimiDialogFragment;
 import com.timecat.module.git.sgit.activities.RepoDetailActivity;
 import com.timecat.module.git.sgit.database.models.Repo;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by sheimi on 8/24/13.
@@ -52,17 +53,15 @@ public class CheckoutDialog extends SheimiDialogFragment implements
         mBranchName = (EditText) view.findViewById(R.id.newBranchName);
 
         // set button listener
-        builder.setNegativeButton(R.string.git_label_cancel,
-                new DummyDialogListener());
+        builder.setNegativeButton(R.string.git_label_cancel, new DummyDialogListener());
         builder.setNeutralButton(R.string.git_label_anonymous_checkout, this);
-        builder.setPositiveButton(R.string.git_label_checkout,
-                new DummyDialogListener());
+        builder.setPositiveButton(R.string.git_label_checkout, new DummyDialogListener());
 
         return builder.create();
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(BASE_COMMIT, mCommit);
     }
@@ -73,8 +72,7 @@ public class CheckoutDialog extends SheimiDialogFragment implements
         AlertDialog dialog = (AlertDialog) getDialog();
         if (dialog == null)
             return;
-        Button positiveButton = (Button) dialog
-                .getButton(Dialog.BUTTON_POSITIVE);
+        Button positiveButton = (Button) dialog.getButton(Dialog.BUTTON_POSITIVE);
         positiveButton.setOnClickListener(this);
     }
 

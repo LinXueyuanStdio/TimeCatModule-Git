@@ -13,13 +13,14 @@ import android.widget.EditText;
 
 import com.timecat.element.alert.ToastUtil;
 import com.timecat.module.git.R;
-import com.timecat.module.git.android.utils.FsUtils;
-import com.timecat.module.git.android.views.SheimiDialogFragment;
+import com.timecat.module.git.utils.FsUtils;
 import com.timecat.module.git.sgit.database.RepoContract;
 import com.timecat.module.git.sgit.database.models.Repo;
-import com.timecat.module.git.sgit.preference.PreferenceHelper;
+import com.timecat.module.git.utils.PreferenceHelper;
 
 import java.io.File;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by sheimi on 8/24/13.
@@ -36,6 +37,7 @@ public class ImportLocalRepoDialog extends SheimiDialogFragment implements
     private PreferenceHelper mPrefsHelper;
     public static final String FROM_PATH = "from path";
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         super.onCreateDialog(savedInstanceState);
@@ -52,15 +54,13 @@ public class ImportLocalRepoDialog extends SheimiDialogFragment implements
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         builder.setTitle(getString(R.string.git_dialog_import_set_local_repo_title));
-        View view = getActivity().getLayoutInflater().inflate(
-                R.layout.git_dialog_import_repo, null);
+        View view = getActivity().getLayoutInflater().inflate(R.layout.git_dialog_import_repo, null);
 
         builder.setView(view);
         mLocalPath = (EditText) view.findViewById(R.id.localPath);
         mLocalPath.setText(mFile.getName());
         mImportAsExternal = (CheckBox) view.findViewById(R.id.importAsExternal);
-        mImportAsExternal
-                .setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        mImportAsExternal.setOnCheckedChangeListener(new OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView,
                                                  boolean isChecked) {
@@ -75,10 +75,8 @@ public class ImportLocalRepoDialog extends SheimiDialogFragment implements
                 });
 
         // set button listener
-        builder.setNegativeButton(R.string.git_label_cancel,
-                new DummyDialogListener());
-        builder.setPositiveButton(R.string.git_label_import,
-                new DummyDialogListener());
+        builder.setNegativeButton(R.string.git_label_cancel, new DummyDialogListener());
+        builder.setPositiveButton(R.string.git_label_import, new DummyDialogListener());
 
         return builder.create();
     }

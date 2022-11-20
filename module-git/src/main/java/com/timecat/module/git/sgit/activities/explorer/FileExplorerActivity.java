@@ -14,7 +14,7 @@ import com.timecat.page.base.utils.MenuTintUtils;
 import com.timecat.page.base.view.BlurringToolbar;
 import com.timecat.component.identity.Attr;
 import com.timecat.module.git.R;
-import com.timecat.module.git.android.activities.SheimiFragmentActivity;
+import com.timecat.module.git.sgit.activities.SheimiFragmentActivity;
 import com.timecat.module.git.sgit.adapters.FilesListAdapter;
 
 import java.io.File;

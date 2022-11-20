@@ -11,11 +11,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.timecat.module.git.R;
-import com.timecat.module.git.android.activities.SheimiFragmentActivity;
-import com.timecat.module.git.android.utils.BasicFunctions;
+import com.timecat.module.git.sgit.activities.SheimiFragmentActivity;
 import com.timecat.module.git.sgit.database.models.Repo;
-import com.timecat.module.git.sgit.repo.tasks.repo.GetCommitTask;
-import com.timecat.module.git.sgit.repo.tasks.repo.GetCommitTask.GetCommitCallback;
+import com.timecat.module.git.tasks.GetCommitTask;
+import com.timecat.module.git.utils.BasicFunctions;
 
 import org.eclipse.jgit.lib.PersonIdent;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -23,7 +22,6 @@ import org.eclipse.jgit.revwalk.RevCommit;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -33,8 +31,7 @@ import java.util.Set;
 public class CommitsListAdapter extends BaseAdapter {
 
     private Repo mRepo;
-    private static final SimpleDateFormat COMMITTIME_FORMATTER = new SimpleDateFormat(
-            "MM/dd/yyyy", Locale.getDefault());
+    private static final SimpleDateFormat COMMITTIME_FORMATTER = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
     private Set<Integer> mChosenItems;
     private String mFilter;
     private ArrayList<RevCommit> mAll;
@@ -63,8 +60,7 @@ public class CommitsListAdapter extends BaseAdapter {
                 if (isCancelled()) {
                     return null;
                 }
-                if (isAccepted(mAll.get(i)))
-                    mFiltered.add(i);
+                if (isAccepted(mAll.get(i))) {mFiltered.add(i);}
             }
             synchronized (mProgressLock) {
                 mPosted = mFiltered.size();
@@ -92,7 +88,7 @@ public class CommitsListAdapter extends BaseAdapter {
     }
 
     public CommitsListAdapter(Context context, Set<Integer> chosenItems,
-                              Repo repo, String file) {
+            Repo repo, String file) {
         super();
         mFile = file;
         mContext = context;
@@ -162,10 +158,8 @@ public class CommitsListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if (mFilter == null)
-            return mAll.size();
-        if (mIsIncomplete)
-            return mPosted + 1;
+        if (mFilter == null) {return mAll.size();}
+        if (mIsIncomplete) {return mPosted + 1;}
         return mFiltered.size();
     }
 
@@ -197,10 +191,8 @@ public class CommitsListAdapter extends BaseAdapter {
     }
 
     public boolean isProgressBar(int position) {
-        if (mFilter == null)
-            return position >= mAll.size();
-        if (mIsIncomplete)
-            return position >= mPosted;
+        if (mFilter == null) {return position >= mAll.size();}
+        if (mIsIncomplete) {return position >= mPosted;}
         return position >= mFiltered.size();
     }
 
@@ -217,19 +209,13 @@ public class CommitsListAdapter extends BaseAdapter {
             holder = (CommitsListItemHolder) convertView.getTag();
         }
         if (holder == null) {
-            convertView = inflater.inflate(R.layout.git_listitem_commits, parent,
-                    false);
+            convertView = inflater.inflate(R.layout.git_listitem_commits, parent, false);
             holder = new CommitsListItemHolder();
-            holder.commitsTitle = (TextView) convertView
-                    .findViewById(R.id.commitTitle);
-            holder.commitsIcon = (ImageView) convertView
-                    .findViewById(R.id.commitIcon);
-            holder.commitAuthor = (TextView) convertView
-                    .findViewById(R.id.commitAuthor);
-            holder.commitsMsg = (TextView) convertView
-                    .findViewById(R.id.commitMsg);
-            holder.commitTime = (TextView) convertView
-                    .findViewById(R.id.commitTime);
+            holder.commitsTitle = (TextView) convertView.findViewById(R.id.commitTitle);
+            holder.commitsIcon = (ImageView) convertView.findViewById(R.id.commitIcon);
+            holder.commitAuthor = (TextView) convertView.findViewById(R.id.commitAuthor);
+            holder.commitsMsg = (TextView) convertView.findViewById(R.id.commitMsg);
+            holder.commitTime = (TextView) convertView.findViewById(R.id.commitTime);
             convertView.setTag(holder);
         }
         RevCommit commit = getItem(position);
@@ -237,8 +223,7 @@ public class CommitsListAdapter extends BaseAdapter {
         Date date = person.getWhen();
         String email = person.getEmailAddress();
 
-        holder.commitsTitle
-                .setText(Repo.getCommitDisplayName(commit.getName()));
+        holder.commitsTitle.setText(Repo.getCommitDisplayName(commit.getName()));
         holder.commitAuthor.setText(person.getName());
         holder.commitsMsg.setText(commit.getShortMessage());
         holder.commitTime.setText(COMMITTIME_FORMATTER.format(date));
@@ -272,21 +257,13 @@ public class CommitsListAdapter extends BaseAdapter {
 
     public void resetCommit() {
         clear();
-        GetCommitTask getCommitTask = new GetCommitTask(mRepo, mFile,
-                new GetCommitCallback() {
-
-                    @Override
-                    public void postCommits(List<RevCommit> commits) {
-                        if (commits != null) {
-                            // TODO why == null
-                            synchronized (mProgressLock) {
-                                stopFiltering();
-                                mAll = new ArrayList<>(commits);
-                                doFiltering();
-                            }
-                        }
-                    }
-                });
+        GetCommitTask getCommitTask = new GetCommitTask(mRepo, mFile, commits -> {
+            synchronized (mProgressLock) {
+                stopFiltering();
+                mAll = new ArrayList<>(commits);
+                doFiltering();
+            }
+        });
         getCommitTask.executeTask();
     }
 

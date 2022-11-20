@@ -10,11 +10,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.timecat.module.git.R;
-import com.timecat.module.git.android.activities.SheimiFragmentActivity.OnBackClickListener;
+import com.timecat.module.git.sgit.activities.SheimiFragmentActivity.OnBackClickListener;
 import com.timecat.module.git.sgit.activities.CommitDiffActivity;
 import com.timecat.module.git.sgit.database.models.Repo;
-import com.timecat.module.git.sgit.repo.tasks.repo.StatusTask;
-import com.timecat.module.git.sgit.repo.tasks.repo.StatusTask.GetStatusCallback;
+import com.timecat.module.git.tasks.StatusTask;
+import com.timecat.module.git.tasks.StatusTask.GetStatusCallback;
 
 /**
  * Created by sheimi on 8/5/13.

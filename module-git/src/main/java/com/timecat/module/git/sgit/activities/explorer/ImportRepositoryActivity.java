@@ -5,15 +5,14 @@ import android.content.Intent;
 import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.AdapterView;
 
-import com.timecat.element.alert.ToastUtil;
-import com.timecat.page.base.utils.MenuTintUtils;
 import com.timecat.component.identity.Attr;
+import com.timecat.element.alert.ToastUtil;
 import com.timecat.module.git.R;
 import com.timecat.module.git.sgit.database.models.Repo;
-import com.timecat.module.git.sgit.repo.tasks.repo.InitLocalTask;
+import com.timecat.module.git.tasks.InitLocalTask;
+import com.timecat.page.base.utils.MenuTintUtils;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -71,15 +70,10 @@ public class ImportRepositoryActivity extends FileExplorerActivity {
 
     @Override
     protected AdapterView.OnItemClickListener getOnListItemClickListener() {
-        return new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view,
-                                    int position, long id) {
-                File file = mFilesListAdapter.getItem(position);
-                if (file.isDirectory()) {
-                    setCurrentDir(file);
-                    return;
-                }
+        return (adapterView, view, position, id) -> {
+            File file = mFilesListAdapter.getItem(position);
+            if (file.isDirectory()) {
+                setCurrentDir(file);
             }
         };
     }

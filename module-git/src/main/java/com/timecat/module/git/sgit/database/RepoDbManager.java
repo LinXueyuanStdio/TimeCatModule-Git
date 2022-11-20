@@ -47,8 +47,7 @@ public class RepoDbManager {
         set.add(observer);
     }
 
-    public static void unregisterDbObserver(String table,
-                                            RepoDbObserver observer) {
+    public static void unregisterDbObserver(String table, RepoDbObserver observer) {
         Set<RepoDbObserver> set = mObservers.get(table);
         if (set == null)
             return;
@@ -76,7 +75,7 @@ public class RepoDbManager {
         updateRepo(repoId, values);
     }
 
-    public static interface RepoDbObserver {
+    public interface RepoDbObserver {
         public void nofityChanged();
     }
 
@@ -94,11 +93,10 @@ public class RepoDbManager {
                 + " LIKE ?";
         query = "%" + query + "%";
         String[] selectionArgs = {query, query, query, query};
-        Cursor cursor = mReadableDatabase.query(true,
+        return mReadableDatabase.query(true,
                 RepoContract.RepoEntry.TABLE_NAME,
                 RepoContract.RepoEntry.ALL_COLUMNS, selection, selectionArgs,
                 null, null, null, null);
-        return cursor;
     }
 
     public static Cursor queryAllRepo() {
@@ -106,11 +104,10 @@ public class RepoDbManager {
     }
 
     private Cursor _queryAllRepo() {
-        Cursor cursor = mReadableDatabase.query(true,
+        return mReadableDatabase.query(true,
                 RepoContract.RepoEntry.TABLE_NAME,
                 RepoContract.RepoEntry.ALL_COLUMNS, null, null, null, null,
                 null, null);
-        return cursor;
     }
 
     public static Cursor getRepoById(long id) {
@@ -167,8 +164,7 @@ public class RepoDbManager {
     private void _deleteRepo(long id) {
         String selection = RepoContract.RepoEntry._ID + " = ?";
         String[] selectionArgs = {String.valueOf(id)};
-        mWritableDatabase.delete(RepoContract.RepoEntry.TABLE_NAME, selection,
-                selectionArgs);
+        mWritableDatabase.delete(RepoContract.RepoEntry.TABLE_NAME, selection, selectionArgs);
         notifyObservers(RepoContract.RepoEntry.TABLE_NAME);
     }
 

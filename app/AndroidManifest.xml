@@ -16,16 +16,17 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name="com.timecat.extend.arms.BaseApplication"
         android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/ThemeLight"
         android:usesCleartextTraffic="true"
-        tools:replace="theme,allowBackup,supportsRtl,name">
+        tools:replace="theme,allowBackup,supportsRtl,name,icon">
         <activity
             android:name="com.same.ui.MainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"

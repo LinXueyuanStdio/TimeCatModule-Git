@@ -6,8 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.timecat.module.git.R;
-import com.timecat.module.git.android.utils.CodeGuesser;
-import com.timecat.module.git.android.views.SheimiDialogFragment;
+import com.timecat.module.git.utils.CodeGuesser;
 import com.timecat.module.git.sgit.activities.ViewFileActivity;
 
 import java.util.List;

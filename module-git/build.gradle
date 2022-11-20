@@ -15,10 +15,9 @@ configurations {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api rootProject.ext.timecat["component-CommonStatic"]
-    api rootProject.ext.timecat["middle-setting"]
+    api rootProject.ext.timecat["identity-readonly"]
+    api rootProject.ext.timecat["middle-form"]
     api rootProject.ext.timecat["middle-block"]
-    api rootProject.ext.dependencies["timber"]
     api rootProject.ext.dependencies["kotlin-stdlib"]
     api rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
     api rootProject.ext.androidx_lib["annotations"]

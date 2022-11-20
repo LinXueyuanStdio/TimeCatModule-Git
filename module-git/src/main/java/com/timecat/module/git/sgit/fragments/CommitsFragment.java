@@ -17,7 +17,7 @@ import android.widget.ListView;
 
 import com.timecat.element.alert.ToastUtil;
 import com.timecat.module.git.R;
-import com.timecat.module.git.android.activities.SheimiFragmentActivity.OnBackClickListener;
+import com.timecat.module.git.sgit.activities.SheimiFragmentActivity.OnBackClickListener;
 import com.timecat.module.git.sgit.activities.CommitDiffActivity;
 import com.timecat.module.git.sgit.activities.RepoDetailActivity;
 import com.timecat.module.git.sgit.adapters.CommitsListAdapter;
@@ -68,7 +68,7 @@ public class CommitsFragment extends BaseFragment implements
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.git_fragment_commits, container, false);
         if (getRawActivity() instanceof RepoDetailActivity) {
             ((RepoDetailActivity) getRawActivity()).setCommitsFragment(this);
@@ -92,7 +92,7 @@ public class CommitsFragment extends BaseFragment implements
                 .setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView,
-                                            View view, int position, long id) {
+                            View view, int position, long id) {
                         if (mActionMode == null) {
                             RevCommit newCommit = mCommitsListAdapter.getItem(position);
                             showDiff(null, null, newCommit.getName(), true);
@@ -105,7 +105,7 @@ public class CommitsFragment extends BaseFragment implements
                 .setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> adapterView,
-                                                   View view, int position, long l) {
+                            View view, int position, long l) {
                         if (mActionMode == null) {
                             enterDiffActionMode();
                         }
@@ -148,8 +148,7 @@ public class CommitsFragment extends BaseFragment implements
 
     @Override
     public void reset() {
-        if (mCommitsListAdapter == null)
-            return;
+        if (mCommitsListAdapter == null) {return;}
         mCommitsListAdapter.resetCommit();
     }
 
@@ -171,9 +170,8 @@ public class CommitsFragment extends BaseFragment implements
     }
 
     private void showDiff(ActionMode actionMode, String oldCommit, String newCommit,
-                          boolean showDescription) {
-        Intent intent = new Intent(getRawActivity(),
-                CommitDiffActivity.class);
+            boolean showDescription) {
+        Intent intent = new Intent(getRawActivity(), CommitDiffActivity.class);
         if (oldCommit != null) {
             intent.putExtra(CommitDiffActivity.OLD_COMMIT, oldCommit);
         }
@@ -195,8 +193,7 @@ public class CommitsFragment extends BaseFragment implements
                 ToastUtil.w_long(R.string.git_alert_no_items_selected);
                 return true;
             }
-            int item1,
-                    item2;
+            int item1, item2;
             item1 = items[0];
             if (items.length == 1) {
                 item2 = item1 + 1;
@@ -211,9 +208,9 @@ public class CommitsFragment extends BaseFragment implements
             int smaller = Math.min(item1, item2);
             int larger = Math.max(item1, item2);
             String oldCommit = mCommitsListAdapter.getItem(larger)
-                    .getName();
+                                                  .getName();
             String newCommit = mCommitsListAdapter.getItem(smaller)
-                    .getName();
+                                                  .getName();
             showDiff(actionMode, oldCommit, newCommit, false);
             return true;
         } else if (i == R.id.action_mode_copy_commit) {
@@ -237,7 +234,7 @@ public class CommitsFragment extends BaseFragment implements
             actionMode.finish();
             CheckoutDialog ckd = new CheckoutDialog();
             ckd.setArguments(pathArg);
-            ckd.show(getFragmentManager(), "rename-dialog");
+            ckd.show(getChildFragmentManager(), "rename-dialog");
         }
         return false;
     }
@@ -250,8 +247,7 @@ public class CommitsFragment extends BaseFragment implements
     }
 
     private void chooseItem(int position) {
-        if (mCommitsListAdapter.isProgressBar(position))
-            return;
+        if (mCommitsListAdapter.isProgressBar(position)) {return;}
         if (mChosenItem.contains(position)) {
             mChosenItem.remove(position);
             mCommitsListAdapter.notifyDataSetChanged();

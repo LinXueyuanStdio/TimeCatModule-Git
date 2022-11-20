@@ -8,14 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.timecat.component.commonsdk.utils.override.LogUtil;
 import com.timecat.module.git.R;
-import com.timecat.module.git.android.utils.SecurePrefsHelper;
-import com.timecat.module.git.android.views.SheimiDialogFragment;
 import com.timecat.module.git.sgit.activities.explorer.PrivateKeyManageActivity;
+import com.timecat.module.git.utils.SecurePrefsHelper;
 
 import java.io.File;
 
-import timber.log.Timber;
+import androidx.annotation.NonNull;
 
 /**
  * Allowing editing password for a stored private key
@@ -29,6 +29,7 @@ public class EditKeyPasswordDialog extends SheimiDialogFragment implements
     public static final String KEY_FILE_EXTRA = "extra_key_file";
     private EditText mPassword;
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         super.onCreateDialog(savedInstanceState);
@@ -40,23 +41,20 @@ public class EditKeyPasswordDialog extends SheimiDialogFragment implements
         }
 
         builder.setTitle(getString(R.string.git_dialog_edit_key_password_title));
-        View view = mActivity.getLayoutInflater().inflate(
-                R.layout.git_dialog_prompt_for_password_only, null);
+        View view = mActivity.getLayoutInflater().inflate(R.layout.git_dialog_prompt_for_password_only, null);
 
         builder.setView(view);
         mPassword = (EditText) view.findViewById(R.id.password);
 
         // set button listener
-        builder.setNegativeButton(R.string.git_label_cancel,
-                new DummyDialogListener());
-        builder.setPositiveButton(R.string.git_label_save,
-                new DummyDialogListener());
+        builder.setNegativeButton(R.string.git_label_cancel, new DummyDialogListener());
+        builder.setPositiveButton(R.string.git_label_save, new DummyDialogListener());
 
         return builder.create();
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(KEY_FILE_EXTRA, mKeyFile.getAbsolutePath());
     }
@@ -78,7 +76,7 @@ public class EditKeyPasswordDialog extends SheimiDialogFragment implements
         try {
             SecurePrefsHelper.getInstance().set(mKeyFile.getName(), newPassword);
         } catch (Exception e) {
-            Timber.e(e);
+            LogUtil.e(e);
         }
         mActivity.refreshList();
         dismiss();

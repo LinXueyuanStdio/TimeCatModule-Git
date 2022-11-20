@@ -21,8 +21,8 @@ import android.widget.Toast;
 
 import com.timecat.element.alert.ToastUtil;
 import com.timecat.module.git.R;
-import com.timecat.module.git.android.activities.SheimiFragmentActivity;
-import com.timecat.module.git.android.utils.BasicFunctions;
+import com.timecat.module.git.sgit.activities.SheimiFragmentActivity;
+import com.timecat.module.git.utils.BasicFunctions;
 import com.timecat.module.git.repolist.RepoListActivity;
 import com.timecat.module.git.sgit.activities.RepoDetailActivity;
 import com.timecat.module.git.sgit.database.RepoContract;

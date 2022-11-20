@@ -2,6 +2,8 @@ package com.timecat.module.git.transport;
 
 import android.content.Context;
 
+import com.timecat.component.commonsdk.utils.override.LogUtil;
+
 import org.conscrypt.Conscrypt;
 
 import java.lang.reflect.Field;
@@ -13,8 +15,6 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocketFactory;
 import javax.net.ssl.SSLSocketFactory;
-
-import timber.log.Timber;
 
 /**
  * Created by kaeptmblaubaer1000 on 23.03.2018.
@@ -47,25 +47,25 @@ public class SSLProviderInstaller {
                     Security.setProperty("ssl.ServerSocketFactory.provider", "org.conscrypt.OpenSSLServerSocketFactoryImpl");
                     SSLContext.setDefault(sslContext);
                     HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
-                    Timber.i("Installed default security provider MGit_OpenSSL");
+                    LogUtil.i("Installed default security provider MGit_OpenSSL");
 
                     // This fallthrough is for the above case a break, and since we want to exclude -1 this is great.
                 case -1:
                     break;
                 default:
                     String str = "Failed to install security provider MGit_OpenSSL, result: ";
-                    Timber.e(str + pos);
+                    LogUtil.e(str + pos);
                     throw new SecurityException();
             }
 
         } catch (NoSuchAlgorithmException e) {
-            Timber.e("Failed to find SSLContext.Default provider");
+            LogUtil.e("Failed to find SSLContext.Default provider");
             throw new SecurityException();
         } catch (IllegalAccessException e) {
-            Timber.e("Failed to set socket factory via reflection");
+            LogUtil.e("Failed to set socket factory via reflection");
             throw new SecurityException();
         } catch (NoSuchFieldException e) {
-            Timber.e("Failed to set socket factory via reflection");
+            LogUtil.e("Failed to set socket factory via reflection");
             throw new SecurityException();
         } catch (UnsatisfiedLinkError e) {
             throw new SecurityException();

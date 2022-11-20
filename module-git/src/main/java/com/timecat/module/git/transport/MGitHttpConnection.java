@@ -95,10 +95,8 @@ public class MGitHttpConnection implements HttpConnection {
      * @throws MalformedURLException
      * @throws IOException
      */
-    protected MGitHttpConnection(URL url, Proxy proxy)
-            throws MalformedURLException, IOException {
-        this.wrappedUrlConnection = (HttpURLConnection) url
-                .openConnection(proxy);
+    protected MGitHttpConnection(URL url, Proxy proxy) throws MalformedURLException, IOException {
+        this.wrappedUrlConnection = (HttpURLConnection) url.openConnection(proxy);
     }
 
     public int getResponseCode() throws IOException {
@@ -197,9 +195,11 @@ public class MGitHttpConnection implements HttpConnection {
                 .setHostnameVerifier(hostnameverifier);
     }
 
-    public void configure(KeyManager[] km, TrustManager[] tm,
-                          SecureRandom random) throws NoSuchAlgorithmException,
-            KeyManagementException {
+    public void configure(
+            KeyManager[] km,
+            TrustManager[] tm,
+            SecureRandom random
+    ) throws NoSuchAlgorithmException, KeyManagementException {
         SSLContext ctx = SSLContext.getInstance("TLS"); //$NON-NLS-1$
         ctx.init(km, tm, random);
         SSLSocketFactory factory = ctx.getSocketFactory();

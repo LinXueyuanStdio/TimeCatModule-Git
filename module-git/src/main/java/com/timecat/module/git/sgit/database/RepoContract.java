@@ -47,15 +47,13 @@ public final class RepoContract {
             + COMMA_SEP + RepoEntry.COLUMN_NAME_USERNAME + TEXT_TYPE
             + COMMA_SEP + RepoEntry.COLUMN_NAME_PASSWORD + TEXT_TYPE
             + COMMA_SEP + RepoEntry.COLUMN_NAME_REPO_STATUS + TEXT_TYPE
-            + COMMA_SEP + RepoEntry.COLUMN_NAME_LATEST_COMMITTER_UNAME
-            + TEXT_TYPE + COMMA_SEP
-            + RepoEntry.COLUMN_NAME_LATEST_COMMITTER_EMAIL + TEXT_TYPE
+            + COMMA_SEP + RepoEntry.COLUMN_NAME_LATEST_COMMITTER_UNAME + TEXT_TYPE
+            + COMMA_SEP + RepoEntry.COLUMN_NAME_LATEST_COMMITTER_EMAIL + TEXT_TYPE
             + COMMA_SEP + RepoEntry.COLUMN_NAME_LATEST_COMMIT_DATE + TEXT_TYPE
             + COMMA_SEP + RepoEntry.COLUMN_NAME_LATEST_COMMIT_MSG + TEXT_TYPE
             + " )";
 
-    public static final String REPO_ENTRY_DROP = "DROP TABLE IF EXISTS "
-            + RepoEntry.TABLE_NAME;
+    public static final String REPO_ENTRY_DROP = "DROP TABLE IF EXISTS " + RepoEntry.TABLE_NAME;
 
     public static int getRepoID(Cursor cursor) {
         return cursor.getInt(0);

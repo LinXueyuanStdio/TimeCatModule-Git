@@ -2,13 +2,11 @@ package com.timecat.module.git.sgit.dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.timecat.module.git.R;
-import com.timecat.module.git.android.views.SheimiDialogFragment;
 import com.timecat.module.git.sgit.activities.RepoDetailActivity;
-import com.timecat.module.git.sgit.repo.tasks.repo.DeleteFileFromRepoTask.DeleteOperationType;
+import com.timecat.module.git.tasks.DeleteFileFromRepoTask.DeleteOperationType;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -38,39 +36,34 @@ public class RepoFileOperationDialog extends SheimiDialogFragment {
         mActivity = (RepoDetailActivity) getActivity();
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
 
-        builder.setTitle(R.string.git_dialog_title_you_want_to).setItems(
-                R.array.git_repo_file_operations,
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which) {
-                            case ADD_TO_STAGE: // Add to stage
-                                mActivity.getRepoDelegate().addToStage(
-                                        mFilePath);
-                                break;
-                            case CHECKOUT_FILE:
-                                mActivity.getRepoDelegate().checkoutFile(mFilePath);
-                                break;
-                            case DELETE:
-                                showRemoveFileMessageDialog(R.string.git_dialog_file_delete,
-                                        R.string.git_dialog_file_delete_msg,
-                                        R.string.git_label_delete,
-                                        DeleteOperationType.DELETE);
-                                break;
-                            case REMOVE_CACHED:
-                                showRemoveFileMessageDialog(R.string.git_dialog_file_remove_cached,
-                                        R.string.git_dialog_file_remove_cached_msg,
-                                        R.string.git_label_delete,
-                                        DeleteOperationType.REMOVE_CACHED);
-                                break;
-                            case REMOVE_FORCE:
-                                showRemoveFileMessageDialog(R.string.git_dialog_file_remove_force,
-                                        R.string.git_dialog_file_remove_force_msg,
-                                        R.string.git_label_delete,
-                                        DeleteOperationType.REMOVE_FORCE);
-                                break;
-                        }
-                    }
-                });
+        builder.setTitle(R.string.git_dialog_title_you_want_to).setItems(R.array.git_repo_file_operations, (dialog, which) -> {
+            switch (which) {
+                case ADD_TO_STAGE: // Add to stage
+                    mActivity.getRepoDelegate().addToStage(mFilePath);
+                    break;
+                case CHECKOUT_FILE:
+                    mActivity.getRepoDelegate().checkoutFile(mFilePath);
+                    break;
+                case DELETE:
+                    showRemoveFileMessageDialog(R.string.git_dialog_file_delete,
+                            R.string.git_dialog_file_delete_msg,
+                            R.string.git_label_delete,
+                            DeleteOperationType.DELETE);
+                    break;
+                case REMOVE_CACHED:
+                    showRemoveFileMessageDialog(R.string.git_dialog_file_remove_cached,
+                            R.string.git_dialog_file_remove_cached_msg,
+                            R.string.git_label_delete,
+                            DeleteOperationType.REMOVE_CACHED);
+                    break;
+                case REMOVE_FORCE:
+                    showRemoveFileMessageDialog(R.string.git_dialog_file_remove_force,
+                            R.string.git_dialog_file_remove_force_msg,
+                            R.string.git_label_delete,
+                            DeleteOperationType.REMOVE_FORCE);
+                    break;
+            }
+        });
 
         return builder.create();
     }

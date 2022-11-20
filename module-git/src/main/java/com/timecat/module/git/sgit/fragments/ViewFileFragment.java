@@ -15,12 +15,13 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 
+import com.timecat.component.commonsdk.utils.override.LogUtil;
 import com.timecat.element.alert.ToastUtil;
 import com.timecat.module.git.R;
-import com.timecat.module.git.android.activities.SheimiFragmentActivity;
-import com.timecat.module.git.android.utils.CodeGuesser;
-import com.timecat.module.git.android.utils.Profile;
+import com.timecat.module.git.sgit.activities.SheimiFragmentActivity;
 import com.timecat.module.git.sgit.activities.ViewFileActivity;
+import com.timecat.module.git.utils.CodeGuesser;
+import com.timecat.module.git.utils.Profile;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -30,8 +31,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-
-import timber.log.Timber;
 
 /**
  * Created by phcoder on 09.12.15.
@@ -46,7 +45,7 @@ public class ViewFileFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.git_fragment_view_file, container, false);
 
         mFileContent = (WebView) v.findViewById(R.id.fileContent);
@@ -69,7 +68,7 @@ public class ViewFileFragment extends BaseFragment {
         mFileContent.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onConsoleMessage(String message, int lineNumber,
-                                         String sourceID) {
+                    String sourceID) {
                 Log.d("MyApplication", message + " -- From line " + lineNumber
                         + " of " + sourceID);
             }
@@ -162,7 +161,7 @@ public class ViewFileFragment extends BaseFragment {
                     try {
                         writeStringToFile(content, mFile);
                     } catch (IOException e) {
-                        Timber.e(e);
+                        LogUtil.e(e);
                         showUserError(R.string.git_alert_save_failed);
                     }
                     getActivity().runOnUiThread(new Runnable() {
@@ -272,7 +271,7 @@ public class ViewFileFragment extends BaseFragment {
 
     private void showUserError(final int errorMessageId) {
         SheimiFragmentActivity activity = (SheimiFragmentActivity) getActivity();
-        if (activity == null) return;
+        if (activity == null) {return;}
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {

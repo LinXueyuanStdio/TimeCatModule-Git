@@ -24,12 +24,11 @@ import com.timecat.page.base.utils.MenuTintUtils;
 import com.timecat.page.base.view.BlurringToolbar;
 import com.timecat.component.identity.Attr;
 import com.timecat.module.git.R;
-import com.timecat.module.git.android.activities.SheimiFragmentActivity;
 import com.timecat.module.git.sgit.database.models.Repo;
 import com.timecat.module.git.sgit.dialogs.RenameBranchDialog;
-import com.timecat.module.git.sgit.exception.StopTaskException;
-import com.timecat.module.git.sgit.repo.tasks.SheimiAsyncTask.AsyncTaskPostCallback;
-import com.timecat.module.git.sgit.repo.tasks.repo.CheckoutTask;
+import com.timecat.module.git.utils.StopTaskException;
+import com.timecat.module.git.tasks.SheimiAsyncTask.AsyncTaskPostCallback;
+import com.timecat.module.git.tasks.CheckoutTask;
 
 import org.eclipse.jgit.api.errors.CannotDeleteCurrentBranchException;
 import org.eclipse.jgit.api.errors.GitAPIException;

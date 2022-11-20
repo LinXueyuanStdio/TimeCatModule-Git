@@ -10,7 +10,6 @@ import android.widget.EditText;
 
 import com.timecat.element.alert.ToastUtil;
 import com.timecat.module.git.R;
-import com.timecat.module.git.android.views.SheimiDialogFragment;
 import com.timecat.module.git.sgit.activities.explorer.PrivateKeyManageActivity;
 import com.timecat.module.git.sgit.ssh.PrivateKeyUtils;
 
@@ -41,18 +40,15 @@ public class RenameKeyDialog extends SheimiDialogFragment implements
         mFromFile = new File(mFromPath);
 
         builder.setTitle(getString(R.string.git_dialog_rename_key_title));
-        View view = mActivity.getLayoutInflater().inflate(
-                R.layout.git_dialog_rename_key, null);
+        View view = mActivity.getLayoutInflater().inflate(R.layout.git_dialog_rename_key, null);
 
         builder.setView(view);
         mNewFilename = (EditText) view.findViewById(R.id.newFilename);
         mNewFilename.setText(mFromFile.getName());
 
         // set button listener
-        builder.setNegativeButton(R.string.git_label_cancel,
-                new DummyDialogListener());
-        builder.setPositiveButton(R.string.git_label_rename,
-                new DummyDialogListener());
+        builder.setNegativeButton(R.string.git_label_cancel, new DummyDialogListener());
+        builder.setPositiveButton(R.string.git_label_rename, new DummyDialogListener());
 
         return builder.create();
     }
@@ -69,8 +65,7 @@ public class RenameKeyDialog extends SheimiDialogFragment implements
         AlertDialog dialog = (AlertDialog) getDialog();
         if (dialog == null)
             return;
-        Button positiveButton = (Button) dialog
-                .getButton(Dialog.BUTTON_POSITIVE);
+        Button positiveButton = (Button) dialog.getButton(Dialog.BUTTON_POSITIVE);
         positiveButton.setOnClickListener(this);
     }
 

@@ -10,6 +10,7 @@ import com.timecat.layout.ui.business.form.Divider
 import com.timecat.layout.ui.business.form.H1
 import com.timecat.layout.ui.business.form.Next
 import com.timecat.layout.ui.business.form.Switch
+import com.timecat.middle.block.ext.showDialog
 import com.timecat.middle.setting.BaseSettingActivity
 import com.timecat.module.git.R
 import com.timecat.module.git.sgit.activities.explorer.ExploreRootDirActivity
@@ -37,7 +38,7 @@ class UserSettingsActivity : BaseSettingActivity() {
                 getString(R.string.git_preference_git_user_name),
                 DEF.git().getString(usernameKey, "") ?: ""
             ) {
-                MaterialDialog(this@UserSettingsActivity).show {
+                this@UserSettingsActivity.showDialog { 
                     title(res = R.string.git_preference_git_user_name)
                     positiveButton(R.string.ok)
                     input(prefill = DEF.git().getString(usernameKey, "") ?: "") { _, text ->
@@ -50,7 +51,7 @@ class UserSettingsActivity : BaseSettingActivity() {
                 getString(R.string.git_preference_git_user_email),
                 DEF.git().getString(emailKey, "") ?: ""
             ) {
-                MaterialDialog(this@UserSettingsActivity).show {
+                this@UserSettingsActivity.showDialog {
                     title(res = R.string.git_preference_git_user_name)
                     positiveButton(R.string.ok)
                     input(

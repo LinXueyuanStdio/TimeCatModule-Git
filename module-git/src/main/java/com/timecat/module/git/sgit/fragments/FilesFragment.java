@@ -6,24 +6,24 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.timecat.component.commonsdk.utils.override.LogUtil;
 import com.timecat.element.alert.ToastUtil;
 import com.timecat.module.git.R;
-import com.timecat.module.git.android.activities.SheimiFragmentActivity;
-import com.timecat.module.git.android.activities.SheimiFragmentActivity.OnBackClickListener;
-import com.timecat.module.git.android.utils.FsUtils;
+import com.timecat.module.git.sgit.activities.SheimiFragmentActivity;
+import com.timecat.module.git.sgit.activities.SheimiFragmentActivity.OnBackClickListener;
 import com.timecat.module.git.sgit.activities.ViewFileActivity;
 import com.timecat.module.git.sgit.adapters.FilesListAdapter;
 import com.timecat.module.git.sgit.database.models.Repo;
 import com.timecat.module.git.sgit.dialogs.RepoFileOperationDialog;
+import com.timecat.module.git.utils.FsUtils;
 
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
 
-import timber.log.Timber;
+import androidx.annotation.NonNull;
 
 /**
  * Created by sheimi on 8/5/13.
@@ -50,7 +50,7 @@ public class FilesFragment extends RepoDetailFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.git_fragment_files, container, false);
         getRawActivity().setFilesFragment(this);
 
@@ -66,63 +66,50 @@ public class FilesFragment extends RepoDetailFragment {
 
         mFilesList = (ListView) v.findViewById(R.id.filesList);
 
-        mFilesListAdapter = new FilesListAdapter(getActivity(),
-                new FileFilter() {
-                    @Override
-                    public boolean accept(File file) {
-                        String name = file.getName();
-                        if (name.equals(".git"))
-                            return false;
-                        return true;
-                    }
-                });
+        mFilesListAdapter = new FilesListAdapter(getActivity(), new FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                String name = file.getName();
+                if (name.equals(".git")) {return false;}
+                return true;
+            }
+        });
         mFilesList.setAdapter(mFilesListAdapter);
 
-        mFilesList
-                .setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView,
-                                            View view, int position, long id) {
-                        File file = mFilesListAdapter.getItem(position);
-                        if (file.isDirectory()) {
-                            setCurrentDir(file);
-                            return;
-                        }
-                        String mime = FsUtils.getMimeType(file);
-                        if (mime.startsWith("text")) {
-                            Intent intent = new Intent(getActivity(),
-                                    ViewFileActivity.class);
-                            intent.putExtra(ViewFileActivity.TAG_FILE_NAME,
-                                    file.getAbsolutePath());
-                            intent.putExtra(Repo.TAG, mRepo);
-                            getRawActivity().startActivity(intent);
-                            return;
-                        }
-                        try {
-                            FsUtils.openFile(((SheimiFragmentActivity) getActivity()), file);
-                        } catch (ActivityNotFoundException e) {
-                            Timber.e(e);
-                            ((SheimiFragmentActivity) getActivity()).showMessageDialog(R.string.git_dialog_error_title,
-                                    getString(R.string.git_error_can_not_open_file));
-                        }
-                    }
-                });
+        mFilesList.setOnItemClickListener((adapterView, view, position, id) -> {
+            File file = mFilesListAdapter.getItem(position);
+            if (file.isDirectory()) {
+                setCurrentDir(file);
+                return;
+            }
+            String mime = FsUtils.getMimeType(file);
+            if (mime.startsWith("text")) {
+                Intent intent = new Intent(getActivity(),
+                        ViewFileActivity.class);
+                intent.putExtra(ViewFileActivity.TAG_FILE_NAME,
+                        file.getAbsolutePath());
+                intent.putExtra(Repo.TAG, mRepo);
+                getRawActivity().startActivity(intent);
+                return;
+            }
+            try {
+                FsUtils.openFile(((SheimiFragmentActivity) getActivity()), file);
+            } catch (ActivityNotFoundException e) {
+                LogUtil.e(e);
+                ((SheimiFragmentActivity) getActivity()).showMessageDialog(R.string.git_dialog_error_title,
+                        getString(R.string.git_error_can_not_open_file));
+            }
+        });
 
-        mFilesList
-                .setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                    @Override
-                    public boolean onItemLongClick(AdapterView<?> adapterView,
-                                                   View view, int position, long id) {
-                        File file = mFilesListAdapter.getItem(position);
-                        RepoFileOperationDialog dialog = new RepoFileOperationDialog();
-                        Bundle args = new Bundle();
-                        args.putString(RepoFileOperationDialog.FILE_PATH,
-                                file.getAbsolutePath());
-                        dialog.setArguments(args);
-                        dialog.show(getFragmentManager(), "repo-file-op-dialog");
-                        return true;
-                    }
-                });
+        mFilesList.setOnItemLongClickListener((adapterView, view, position, id) -> {
+            File file = mFilesListAdapter.getItem(position);
+            RepoFileOperationDialog dialog = new RepoFileOperationDialog();
+            Bundle args = new Bundle();
+            args.putString(RepoFileOperationDialog.FILE_PATH, file.getAbsolutePath());
+            dialog.setArguments(args);
+            dialog.show(getChildFragmentManager(), "repo-file-op-dialog");
+            return true;
+        });
 
         if (savedInstanceState != null) {
             String currentDirPath = savedInstanceState.getString(CURRENT_DIR);
@@ -136,7 +123,7 @@ public class FilesFragment extends RepoDetailFragment {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(Repo.TAG, mRepo);
         if (mCurrentDir != null) {
@@ -161,8 +148,7 @@ public class FilesFragment extends RepoDetailFragment {
      * directory listing.
      */
     public void resetCurrentDir() {
-        if (mRootDir == null)
-            return;
+        if (mRootDir == null) {return;}
         setCurrentDir(mRootDir);
     }
 
@@ -201,10 +187,8 @@ public class FilesFragment extends RepoDetailFragment {
         return new OnBackClickListener() {
             @Override
             public boolean onClick() {
-                if (mRootDir == null || mCurrentDir == null)
-                    return false;
-                if (mRootDir.equals(mCurrentDir))
-                    return false;
+                if (mRootDir == null || mCurrentDir == null) {return false;}
+                if (mRootDir.equals(mCurrentDir)) {return false;}
                 File parent = mCurrentDir.getParentFile();
                 setCurrentDir(parent);
                 return true;

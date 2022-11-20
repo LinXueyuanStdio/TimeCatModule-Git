@@ -2,10 +2,11 @@ package com.timecat.module.git.sgit.fragments;
 
 import android.content.Context;
 
-import androidx.fragment.app.Fragment;
+import com.timecat.module.git.sgit.activities.SheimiFragmentActivity;
+import com.timecat.module.git.sgit.activities.SheimiFragmentActivity.OnBackClickListener;
 
-import com.timecat.module.git.android.activities.SheimiFragmentActivity;
-import com.timecat.module.git.android.activities.SheimiFragmentActivity.OnBackClickListener;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by sheimi on 8/7/13.
@@ -19,7 +20,7 @@ public abstract class BaseFragment extends Fragment {
     public abstract void reset();
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (SheimiFragmentActivity) context;
     }

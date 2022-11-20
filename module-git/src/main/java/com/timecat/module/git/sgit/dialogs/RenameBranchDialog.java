@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.timecat.module.git.R;
 import com.timecat.module.git.sgit.activities.BranchChooserActivity;
 import com.timecat.module.git.sgit.database.models.Repo;
-import com.timecat.module.git.sgit.exception.StopTaskException;
+import com.timecat.module.git.utils.StopTaskException;
 
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Ref;
@@ -57,10 +57,8 @@ public class RenameBranchDialog extends DialogFragment implements
         mNewBranchname.setText(Repo.getCommitDisplayName(mFromCommit));
 
         // set button listener
-        builder.setNegativeButton(R.string.git_label_cancel,
-                new DummyDialogListener());
-        builder.setPositiveButton(R.string.git_label_rename,
-                new DummyDialogListener());
+        builder.setNegativeButton(R.string.git_label_cancel, new DummyDialogListener());
+        builder.setPositiveButton(R.string.git_label_rename, new DummyDialogListener());
 
         return builder.create();
     }

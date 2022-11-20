@@ -13,28 +13,28 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.SearchView;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-
-import com.xiaojinzi.component.anno.RouterAnno;
 import com.jess.arms.utils.LogUtils;
-import com.timecat.element.alert.ToastUtil;
-import com.timecat.page.base.utils.MenuTintUtils;
-import com.timecat.page.base.view.BlurringToolbar;
-import com.timecat.identity.readonly.RouterHub;
 import com.timecat.component.identity.Attr;
+import com.timecat.element.alert.ToastUtil;
+import com.timecat.identity.readonly.RouterHub;
 import com.timecat.module.git.R;
-import com.timecat.module.git.android.activities.SheimiFragmentActivity;
 import com.timecat.module.git.sgit.activities.delegate.RepoOperationDelegate;
 import com.timecat.module.git.sgit.database.models.Repo;
 import com.timecat.module.git.sgit.fragments.BaseFragment;
 import com.timecat.module.git.sgit.fragments.CommitsFragment;
 import com.timecat.module.git.sgit.fragments.FilesFragment;
 import com.timecat.module.git.sgit.fragments.StatusFragment;
-import com.timecat.module.git.sgit.repo.tasks.SheimiAsyncTask.AsyncTaskCallback;
+import com.timecat.module.git.tasks.SheimiAsyncTask.AsyncTaskCallback;
+import com.timecat.page.base.utils.MenuTintUtils;
+import com.timecat.page.base.view.BlurringToolbar;
+import com.xiaojinzi.component.anno.RouterAnno;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 @RouterAnno(hostAndPath = RouterHub.GIT_RepoDetailActivity)
 public class RepoDetailActivity extends SheimiFragmentActivity {
@@ -230,7 +230,7 @@ public class RepoDetailActivity extends SheimiFragmentActivity {
     }
 
     @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
+    public boolean onKeyUp(int keyCode, @NonNull KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
             case KeyEvent.KEYCODE_DEL:
