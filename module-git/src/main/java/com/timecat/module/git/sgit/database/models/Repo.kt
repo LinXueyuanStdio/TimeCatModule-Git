@@ -34,8 +34,8 @@ class Repo(cursor: Cursor) : Comparable<Repo>, Serializable {
         private set
     var remoteURL: String
         private set
-    var username: String
-    var password: String
+    var username: String?
+    var password: String?
     var repoStatus: String
         private set
     var lastCommitter: String
@@ -139,8 +139,8 @@ class Repo(cursor: Cursor) : Comparable<Repo>, Serializable {
         id = stream.readInt()
         remoteURL = stream.readObject() as String
         localPath = stream.readObject() as String
-        username = stream.readObject() as String
-        password = stream.readObject() as String
+        username = stream.readObject() as String?
+        password = stream.readObject() as String?
         repoStatus = stream.readObject() as String
         lastCommitter = stream.readObject() as String
         lastCommitterEmail = stream.readObject() as String
